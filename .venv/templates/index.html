@@ -1,15 +1,35 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block header %}
-  <h1>{% block title %}Register{% endblock %}</h1>
+<h1>{% block title %}Register{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Register">
-  </form>
+<div class="content">
+  <h1 class="heading">AlphaLearner</h1>
+  <div class="practice-mode">
+    <button class="practice-btn blue-btn">
+      Practice Mode
+    </button>
+    <p class="practice-p desc">
+      Practice words
+    </p>
+  </div>
+  <div class="quiz-mode">
+    <button class="quiz-btn blue-btn">
+      Quiz Mode
+    </button>
+    <p class="quiz-p desc">
+      play a quiz
+    </p>
+  </div>
+  <div class="train-model">
+    <button class="train-btn blue-btn">
+      Train Model
+    </button>
+    <p class="train-p desc">
+      Train the model
+    </p>
+  </div>
+</div>
 {% endblock %}
