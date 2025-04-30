@@ -1,0 +1,58 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.div{
+    background: linear-gradient(to right, #A2C2E5, #E9F2FB);  
+    height: 100vh;
+    width: 100wh;
+
+}
+
+.div1{
+    
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
+
+.div2{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    background-color: rgb(202, 221, 239);
+    padding: 30px;
+}
+
+.div3 {
+    height: 200px;
+   
+    width: 200px;
+    border: 2px solid rgb(149, 149, 224);
+    display: flex;
+    justify-content: center; /* Horizontally center canvas */
+    align-items: center; /* Vertically center canvas */
+}
+
+
+
+
+.div4{
+    width: 50vh;
+    padding-left: 30px;
+}
+
+
+button{
+    background-color: #CADAFC;
+    
+    padding: 10px;
+    border: 2px solid rgb(105, 143, 220);
+    border-radius:15px;
+}

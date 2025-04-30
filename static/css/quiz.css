@@ -1,0 +1,44 @@
+
+body{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.quiz-time{
+    background: linear-gradient(to right, #A2C2E5, #E9F2FB);  
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+}
+
+.quiz-time h2{
+   background-color: white;
+   
+   font:50px;
+   font-size:50px;
+   border: 2px solid rgb(255, 255, 255);
+   padding: 10px;
+   border-radius: 20px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.quiz-time p{
+    background-color: white;
+   
+   font:50px;
+   font-size:20px;
+   border: 2px solid rgb(255, 255, 255);
+   padding: 10px;
+   border-radius: 20px;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.quiztime canvas{
+    background-color: white;
+    border: 2px solid rgb(255, 255, 255);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
