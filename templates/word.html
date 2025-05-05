@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="div">
+    <div class="div1">
+        
+        <p>Upload a CAPTCHA  to see predictions.</p>
+    </div>
+
+    <div class="div2">
+        <div class="div4">
+            <form id="predict-form" enctype="multipart/form-data">
+                <input type="file" id="imageInput" name="image" accept="image/*" required>
+                <div style="padding: 1rem;">
+                    <button type="button" class="button is-success" onclick="predictImage()">Predict</button>
+                </div>
+            </form>
+            <div id="predictionResult" style="margin-top: 1rem; font-size: 1.2rem;"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.div {
+    background: linear-gradient(to right, #A2C2E5, #E9F2FB);
+    height: 100vh;
+    width: 100wh;
+}
+
+.div1 {
+    height: 30vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(202, 221, 239);
+    padding: 30px;
+}
+
+.div4 {
+    width: 70vh;
+    padding-left: 30px;
+}
+
+button {
+    background-color: #CADAFC;
+    padding: 10px;
+    border: 2px solid rgb(105, 143, 220);
+    border-radius: 15px;
+}
+</style>
+
+<script>
+function predictImage() {
+    const fileInput = document.getElementById('imageInput');
+    if (!fileInput.files.length) {
+        alert("Please upload an image first.");
+        return;
+    }
+    const formData = new FormData();
+    formData.append('image', fileInput.files[0]);
+
+    fetch('/predict', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('predictionResult').innerHTML =
+            'Predicted Text: <strong>' + data.prediction + '</strong>';
+    })
+    .catch(error => {
+        document.getElementById('predictionResult').innerHTML =
+            'Error in prediction. Try again.';
+        console.error(error);
+    });
+}
+</script>
+{% endblock %}

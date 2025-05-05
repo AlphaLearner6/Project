@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="quiz-time">
+    <h2>Quiz: Question {{ question_no }}/5</h2>
+    <p>Draw the letter: <strong>{{ letter }}</strong></p>
+
+    <canvas id="canvas" width="200" height="200" style="border: 1px solid rgb(176, 174, 174); background-color: aliceblue; box-shadow: 0 0 5px rgba(0, 0, 0, 0.4); "></canvas>
+    
+    <form id="quiz-form" action="/quiz" method="POST">
+        <input type="hidden" name="pixels" id="pixels">
+        <input type="hidden" name="letter" value="{{ letter }}">
+        <input type="hidden" name="score" value="{{ score }}">
+        <input type="hidden" name="question_no" value="{{ question_no }}">
+        <button type="button" onclick="submitQuiz()">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            startCanvas()
+        })
+
+        
+    </script>
+</div>
+{% endblock %}

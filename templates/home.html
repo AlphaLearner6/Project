@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="cards">
+    <div class="card">
+        <h3>Practice Handwriting Recognition</h3>
+        <p>Test your handwriting recognition skills with our interactive tool.</p>
+        <a href="{{ url_for('practice') }}" class="btn">Practice Data</a>
+    </div>
+
+    <div class="card">
+        <h3>Add Handwriting Data</h3>
+        <p>Help improve our model by adding your handwriting samples.</p>
+        <a href="{{ url_for('add_data') }}" class="btn">Add Data</a>
+    </div>
+
+    <div class="card">
+        <h3>Quiz Time</h3>
+        <p>All The Best!!</p>
+        <a href="{{ url_for('quiz') }}" class="btn">Start</a>
+    </div>
+    
+</div>
+
+<style>
+/* Style for the buttons */
+.btn button {
+    background-color: #20C997; /* Green background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    padding: 10px 20px; /* Add padding */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Adjust font size */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for buttons */
+.btn button:hover {
+    background-color: #17A589; /* Darker green on hover */
+}
+
+/* Optional: Center the buttons inside the card */
+.card .btn {
+    display: inline-block;
+    margin-top: 10px; /* Add spacing above the button */
+    text-align: center;
+}
+</style>
+{% endblock %}
