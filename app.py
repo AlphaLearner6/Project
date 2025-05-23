@@ -9,6 +9,9 @@ from random import choice
 from werkzeug.utils import secure_filename
 import cv2
 
+MODEL_PATH = "letter.h5"
+MODEL_URL = "https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5"
+
 app = Flask(__name__)
 app.secret_key = 'alphalearner'
 
