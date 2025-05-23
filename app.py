@@ -8,21 +8,6 @@ from bidict import bidict
 from random import choice
 from werkzeug.utils import secure_filename
 import cv2
-import requests
-
-MODEL_PATH = "letter.h5"
-MODEL_URL = "https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5"
-
-def download_model():
-    if not os.path.exists(MODEL_PATH):
-        print("Downloading letter.h5 model...")
-        response = requests.get(MODEL_URL)
-        with open(MODEL_PATH, "wb") as f:
-            f.write(response.content)
-        print("Download complete.")
-
-download_model()
-
 
 app = Flask(__name__)
 app.secret_key = 'alphalearner'
@@ -198,6 +183,4 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
 
