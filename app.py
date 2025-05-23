@@ -9,8 +9,6 @@ from random import choice
 from werkzeug.utils import secure_filename
 import cv2
 
-MODEL_PATH = "letter.h5"
-MODEL_URL = "https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5"
 
 app = Flask(__name__)
 app.secret_key = 'alphalearner'
@@ -99,7 +97,7 @@ def handle_practice_input():
     pixel_data = request.form.get('pixels', '')
     pixel_array = np.array(pixel_data.split(','), dtype=float).reshape(1, 50, 50, 1)
 
-    model = keras.models.load_model('letter.h5')
+    model = keras.models.load_model('https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5')
     prediction = model.predict(pixel_array)
     predicted_index = np.argmax(prediction, axis=-1)[0]
     predicted_letter = ENCODER.inverse[predicted_index]
