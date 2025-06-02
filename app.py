@@ -40,7 +40,7 @@ ENCODER = bidict({
 })
 
 LETTER_MODEL_URL = "https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5"
-LETTER_MODEL_PATH = "letter.h5"
+LETTER_MODEL_PATH = os.path.join(os.path.dirname(__file__), "letter.h5")
 
 def download_model():
     if not os.path.exists(LETTER_MODEL_PATH):
@@ -56,8 +56,10 @@ def download_model():
         except Exception as e:
             print(f"Failed to download letter.h5: {e}")
 
+print("Current working directory:", os.getcwd())
+print("Checking if letter.h5 exists:", os.path.exists(LETTER_MODEL_PATH))
 download_model()
-
+print("After download, exists:", os.path.exists(LETTER_MODEL_PATH))
 
 
 
@@ -113,7 +115,7 @@ def handle_practice_input():
     pixel_data = request.form.get('pixels', '')
     pixel_array = np.array(pixel_data.split(','), dtype=float).reshape(1, 50, 50, 1)
 
-    model = keras.models.load_model('letter.h5')
+    model = keras.models.load_model(LETTER_MODEL_PATH)
     prediction = model.predict(pixel_array)
     predicted_index = np.argmax(prediction, axis=-1)[0]
     predicted_letter = ENCODER.inverse[predicted_index]
@@ -140,7 +142,7 @@ def quiz_post():
     pixels = pixels.split(',')
     img = np.array(pixels).astype(float).reshape(1, 50, 50, 1)
 
-    model = keras.models.load_model('letter.h5')
+    model = keras.models.load_model(LETTER_MODEL_PATH)
     pred_letter = np.argmax(model.predict(img), axis=-1)
     pred_letter = ENCODER.inverse[pred_letter[0]]
 
