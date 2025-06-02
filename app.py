@@ -8,6 +8,7 @@ from bidict import bidict
 from random import choice
 from werkzeug.utils import secure_filename
 import cv2
+import requests
 
 app = Flask(__name__)
 app.secret_key = 'alphalearner'
@@ -44,12 +45,16 @@ LETTER_MODEL_PATH = "letter.h5"
 def download_model():
     if not os.path.exists(LETTER_MODEL_PATH):
         print("Downloading letter.h5 from S3...")
-        r = requests.get(LETTER_MODEL_URL, stream=True)
-        with open(LETTER_MODEL_PATH, 'wb') as f:
-            for chunk in r.iter_content(chunk_size=8192):
-                if chunk:
-                    f.write(chunk)
-        print("Download complete.")
+        try:
+            r = requests.get(LETTER_MODEL_URL, stream=True)
+            r.raise_for_status()
+            with open(LETTER_MODEL_PATH, 'wb') as f:
+                for chunk in r.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+            print("Download complete.")
+        except Exception as e:
+            print(f"Failed to download letter.h5: {e}")
 
 download_model()
 
