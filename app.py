@@ -15,8 +15,7 @@ app.secret_key = 'alphalearner'
 
 CORS(app)
 
-model1 = load_model('capcha/capcha.h5')
-character = 'abcdefghijklmnopqrstuvwxyz0123456789'
+
 
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
