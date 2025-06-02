@@ -38,7 +38,20 @@ ENCODER = bidict({
     'AM':63,'GLA':64,'One':65,'Two':66
 })
 
+LETTER_MODEL_URL = "https://s3.ap-south-1.amazonaws.com/letter.h5/letter.h5"
+LETTER_MODEL_PATH = "letter.h5"
 
+def download_model():
+    if not os.path.exists(LETTER_MODEL_PATH):
+        print("Downloading letter.h5 from S3...")
+        r = requests.get(LETTER_MODEL_URL, stream=True)
+        with open(LETTER_MODEL_PATH, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
+        print("Download complete.")
+
+download_model()
 
 
 
