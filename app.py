@@ -46,7 +46,7 @@ def download_model():
     if not os.path.exists(LETTER_MODEL_PATH):
         print("Downloading letter.h5 from S3...")
         try:
-            r = requests.get(LETTER_MODEL_URL, stream=True)
+            r = requests.get(LETTER_MODEL_URL, stream=True, timeout=300)  # 5 minutes
             r.raise_for_status()
             with open(LETTER_MODEL_PATH, 'wb') as f:
                 for chunk in r.iter_content(chunk_size=8192):
